@@ -1,12 +1,18 @@
 import { createApp } from 'vue'
 import './style.css'
-import getRouter from './router'
+import router from './router'
+import { AgostonClient } from '@agoston-io/client'
 import App from './App.vue'
 
-const app = createApp(App)
-app.use(getRouter({
-    isDown: false,
-    isInMaintenance: false,
-    isSessionAuthenticated: false,
-}));
-app.mount('#app')
+AgostonClient().then(agostonClient => {
+
+    const apolloProvider = agostonClient.createEmbeddedApolloProvider();
+
+    const app = createApp(App)
+    app.use(apolloProvider)
+    app.use(router(agostonClient.session()));
+    app.mount('#app')
+
+});
+
+

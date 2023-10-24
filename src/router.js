@@ -4,7 +4,7 @@ import AppLogin from "./components/AppLogin.vue";
 import AppUserProfile from "./components/AppUserProfile.vue";
 import AppNotFound from "./components/AppNotFound.vue";
 
-export default function getRouter(routingState) {
+export default function router(session) {
 
     const routes = [
         {
@@ -37,10 +37,10 @@ export default function getRouter(routingState) {
 
     router.beforeEach(async (to) => {
 
-        if (routingState.isSessionAuthenticated && to.name === 'AppLogin') {
+        if (session.is_authenticated || false && to.name === 'AppLogin') {
             return { name: 'profile' }
         }
-        if (to.requiresAuth || false && !routingState.isSessionAuthenticated) {
+        if (to.requiresAuth || false && !session.is_authenticated || false) {
             return { name: 'AppUserProfile' }
         }
 
