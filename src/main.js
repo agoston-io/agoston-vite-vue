@@ -1,5 +1,12 @@
 import { createApp } from 'vue'
 import './style.css'
+import getRouter from './router'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(getRouter({
+    isDown: false,
+    isInMaintenance: false,
+    isSessionAuthenticated: false,
+}));
+app.mount('#app')
