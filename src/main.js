@@ -10,6 +10,8 @@ AgostonClient().then(agostonClient => {
 
     const app = createApp(App)
     app.use(apolloProvider)
+    app.config.globalProperties.$agostonClient = agostonClient
+    app.config.globalProperties.$session = agostonClient.session()
     app.use(router(agostonClient.session()));
     app.mount('#app')
 

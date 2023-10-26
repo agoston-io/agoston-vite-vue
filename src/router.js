@@ -9,19 +9,24 @@ export default function router(session) {
     const routes = [
         {
             path: "/",
-            name: "AppLandingPage",
-            component: AppLandingPage,
-        },
-        {
-            path: "/login",
-            name: "AppLogin",
-            component: AppLogin,
-        },
-        {
-            path: "/profile",
-            name: "AppUserProfile",
-            component: AppUserProfile,
-            requiresAuth: true,
+            children: [
+                {
+                    path: "",
+                    name: "AppLandingPage",
+                    component: AppLandingPage,
+                },
+                {
+                    path: "login",
+                    name: "AppLogin",
+                    component: AppLogin,
+                },
+                {
+                    path: "profile",
+                    name: "AppUserProfile",
+                    component: AppUserProfile,
+                    requiresAuth: true,
+                }
+            ]
         },
         {
             path: "/:catchAll(.*)",
@@ -37,11 +42,11 @@ export default function router(session) {
 
     router.beforeEach(async (to) => {
 
-        if (session.is_authenticated || false && to.name === 'AppLogin') {
-            return { name: 'profile' }
-        }
-        if (to.requiresAuth || false && !session.is_authenticated || false) {
+        if ((session.is_authenticated || false) && to.name === 'AppLogin') {
             return { name: 'AppUserProfile' }
+        }
+        if ((to.requiresAuth || false) && !session.is_authenticated || false) {
+            return { name: 'AppLogin' }
         }
 
     });
