@@ -2,7 +2,9 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-white fixed-top bg-white">
             <div class="container">
-                <a class="navbar-brand" href="#">AmazingApp</a>
+                <router-link class="navbar-brand" :to="{ name: 'AppLandingPage' }">
+                    <span>Amazing App</span>
+                </router-link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -10,10 +12,15 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                            <router-link class="nav-link" :to="{ name: 'AppLandingPage' }">
+                                <span>Home</span>
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-disabled="true">Profile (Session Data)</a>
+
+                            <router-link class="nav-link" :to="{ name: 'AppUserProfile' }">
+                                <span>Profile (Session Data)</span>
+                            </router-link>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -28,14 +35,14 @@
                         </li>
                     </ul>
                     <div v-if="!$agostonClient.isAuthenticated()">
-                        <router-link class="fw-bold" :to="{ name: 'AppLogin' }">Log in <span
+                        <router-link class="fw-bold nav-item" :to="{ name: 'AppLogin' }">Log in <span
                                 aria-hidden="true">&rarr;</span></router-link>
                     </div>
                     <div v-else>
-                        <router-link class="fw-bold" :to="{ name: 'AppLogin' }"><span class="fw-bold me-1">{{
+                        <router-link class="fw-bold nav-item" :to="{ name: 'AppUserProfile' }"><span class="fw-bold me-1">{{
                             $session.auth_subject
                         }}</span></router-link>
-                        | <a class="fw-bold" href="#"
+                        | <a class="fw-bold" nav-item href="#"
                             @click="$agostonClient.logout({ options: { redirectLogout: '/' } })">Logout</a>
                     </div>
                 </div>

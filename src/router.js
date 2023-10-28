@@ -24,7 +24,7 @@ export default function router(session) {
                     path: "profile",
                     name: "AppUserProfile",
                     component: AppUserProfile,
-                    requiresAuth: true,
+                    meta: { requiresAuth: true },
                 }
             ]
         },
@@ -45,7 +45,7 @@ export default function router(session) {
         if ((session.is_authenticated || false) && to.name === 'AppLogin') {
             return { name: 'AppUserProfile' }
         }
-        if ((to.requiresAuth || false) && !session.is_authenticated || false) {
+        if ((to.meta.requiresAuth || false) && (!session.is_authenticated || false)) {
             return { name: 'AppLogin' }
         }
 
