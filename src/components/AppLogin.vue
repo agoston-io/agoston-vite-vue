@@ -16,7 +16,7 @@
                 <!-- Login with external auth -->
                 <div class="d-grid">
                     <a class="btn btn-primary btn-lg" href="#"
-                        @click="$agostonClient.loginOrSignUpFromProvider({ strategyName: 'default-auth0-oidc', options: { redirectSuccess: '/', redirectError: '/login' } })">
+                        @click="$agostonClient.loginOrSignUpFromProvider({ strategyName: 'default-auth0-oidc', options: { redirectSuccess: '/profile', redirectError: '/login' } })">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 20 22">
                             <path
@@ -93,14 +93,12 @@ export default {
         return {
             username: null,
             password: null,
-            loginErrorMessage: null,
+            loginErrorMessage: this.$route.query.message || null,
         };
     },
     methods: {
         async login() {
             this.loginErrorMessage = null;
-            console.log(this.username)
-            console.log(this.password)
             var err = await this.$agostonClient.loginOrSignUpWithUserPassword({
                 username: this.username,
                 password: this.password,
