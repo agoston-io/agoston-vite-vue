@@ -39,9 +39,12 @@
                                 aria-hidden="true">&rarr;</span></router-link>
                     </div>
                     <div v-else>
-                        <router-link class="fw-bold nav-item" :to="{ name: 'AppUserProfile' }"><span class="fw-bold me-1">{{
-                            $session.auth_subject
-                        }}</span></router-link>
+                        <router-link class="fw-bold nav-item fw-bold me-1" :to="{ name: 'AppUserProfile' }">
+                            <img v-if="$session.auth_data.picture !== undefined" v-bind:src="$session.auth_data.picture"
+                                class="me-2 rounded-circle" style="width: 35px;" />
+                            <span v-if="$session.auth_data.email !== undefined">{{ $session.auth_data.email }}</span>
+                            <span v-else>{{ $session.auth_subject }}</span>
+                        </router-link>
                         | <a class="fw-bold" nav-item href="#"
                             @click="$agostonClient.logout({ options: { redirectLogout: '/' } })">Logout</a>
                     </div>

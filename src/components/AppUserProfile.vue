@@ -34,8 +34,9 @@
 
 
                 <div class="row">
-                    <div class="col-6 fw-bold">
-                        Session data
+                    <div class="col-6">
+                        <span class="fw-bold">Session data</span>
+                        <span> (comming from the authentication provider)</span>
                     </div>
                     <div class="col-6">
                         {{ $session }}
