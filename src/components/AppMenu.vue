@@ -33,17 +33,17 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
                                     <router-link class="nav-link" :to="{ name: 'AppDemoGraphQLQuery' }">
-                                        <span>List/show data (GraphQL Query)</span>
+                                        <span>List tweets (GraphQL Query)</span>
                                     </router-link>
                                 </li>
                                 <li>
                                     <router-link class="nav-link" :to="{ name: 'AppDemoGraphQLMutation' }">
-                                        <span>Modify data (GraphQL Mutation)</span>
+                                        <span>Add tweets (GraphQL Mutation)</span>
                                     </router-link>
                                 </li>
                                 <li>
                                     <router-link class="nav-link" :to="{ name: 'AppDemoGraphQLSubscription' }">
-                                        <span>real time data (GraphQL subscription)</span>
+                                        <span>Real time tweets (GraphQL subscription)</span>
                                     </router-link>
                                 </li>
                             </ul>

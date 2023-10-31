@@ -13,42 +13,37 @@ export default function router(session) {
     const routes = [
         {
             path: "/",
+            name: "AppLandingPage",
+            component: AppLandingPage,
+        },
+        {
+            path: "/login",
+            name: "AppLogin",
+            component: AppLogin,
+        },
+        {
+            path: "/profile",
+            name: "AppUserProfile",
+            component: AppUserProfile,
+            meta: { requiresAuth: true },
+        },
+        {
+            path: "/graphql-demo",
             children: [
                 {
-                    path: "",
-                    name: "AppLandingPage",
-                    component: AppLandingPage,
+                    path: "query",
+                    name: "AppDemoGraphQLQuery",
+                    component: AppDemoGraphQLQuery,
                 },
                 {
-                    path: "login",
-                    name: "AppLogin",
-                    component: AppLogin,
+                    path: "mutation",
+                    name: "AppDemoGraphQLMutation",
+                    component: AppDemoGraphQLMutation,
                 },
                 {
-                    path: "profile",
-                    name: "AppUserProfile",
-                    component: AppUserProfile,
-                    meta: { requiresAuth: true },
-                },
-                {
-                    path: "graphql-demo",
-                    children: [
-                        {
-                            path: "query",
-                            name: "AppDemoGraphQLQuery",
-                            component: AppDemoGraphQLQuery,
-                        },
-                        {
-                            path: "mutation",
-                            name: "AppDemoGraphQLMutation",
-                            component: AppDemoGraphQLMutation,
-                        },
-                        {
-                            path: "subscription",
-                            name: "AppDemoGraphQLSubscription",
-                            component: AppDemoGraphQLSubscription,
-                        }
-                    ]
+                    path: "subscription",
+                    name: "AppDemoGraphQLSubscription",
+                    component: AppDemoGraphQLSubscription,
                 }
             ]
         },

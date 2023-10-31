@@ -1,6 +1,6 @@
 <template>
   <AppMenu />
-  <main>
+  <main class="mt-5">
     <router-view />
   </main>
   <AppFooter />
