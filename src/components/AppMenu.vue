@@ -2,6 +2,8 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-white fixed-top bg-white">
             <div class="container">
+
+                <!-- The branding part on the left side of the menu -->
                 <router-link class="navbar-brand" :to="{ name: 'AppLandingPage' }">
                     <span>Amazing App</span>
                 </router-link>
@@ -9,6 +11,8 @@
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- The menu -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
@@ -17,7 +21,6 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-
                             <router-link class="nav-link" :to="{ name: 'AppUserProfile' }">
                                 <span>Profile (Session Data)</span>
                             </router-link>
@@ -28,12 +31,26 @@
                                 Backend Data (GraphQL examples)
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">List/show data (GraphQL Query)</a></li>
-                                <li><a class="dropdown-item" href="#">Modify data (GraphQL Mutation)</a></li>
-                                <li><a class="dropdown-item" href="#">real time data (GraphQL subscription)</a></li>
+                                <li>
+                                    <router-link class="nav-link" :to="{ name: 'AppDemoGraphQLQuery' }">
+                                        <span>List/show data (GraphQL Query)</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link class="nav-link" :to="{ name: 'AppDemoGraphQLMutation' }">
+                                        <span>Modify data (GraphQL Mutation)</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link class="nav-link" :to="{ name: 'AppDemoGraphQLSubscription' }">
+                                        <span>real time data (GraphQL subscription)</span>
+                                    </router-link>
+                                </li>
                             </ul>
                         </li>
                     </ul>
+
+                    <!-- Authentication part on the right side of the menu -->
                     <div v-if="!$agostonClient.isAuthenticated()">
                         <router-link class="fw-bold nav-item" :to="{ name: 'AppLogin' }">Log in <span
                                 aria-hidden="true">&rarr;</span></router-link>

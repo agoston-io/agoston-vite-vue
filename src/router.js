@@ -3,6 +3,10 @@ import AppLandingPage from "./components/AppLandingPage.vue";
 import AppLogin from "./components/AppLogin.vue";
 import AppUserProfile from "./components/AppUserProfile.vue";
 import AppNotFound from "./components/AppNotFound.vue";
+// GraphQL demo components
+import AppDemoGraphQLQuery from "./components/AppDemoGraphQLQuery.vue";
+import AppDemoGraphQLMutation from "./components/AppDemoGraphQLMutation.vue";
+import AppDemoGraphQLSubscription from "./components/AppDemoGraphQLSubscription.vue";
 
 export default function router(session) {
 
@@ -25,6 +29,26 @@ export default function router(session) {
                     name: "AppUserProfile",
                     component: AppUserProfile,
                     meta: { requiresAuth: true },
+                },
+                {
+                    path: "graphql-demo",
+                    children: [
+                        {
+                            path: "query",
+                            name: "AppDemoGraphQLQuery",
+                            component: AppDemoGraphQLQuery,
+                        },
+                        {
+                            path: "mutation",
+                            name: "AppDemoGraphQLMutation",
+                            component: AppDemoGraphQLMutation,
+                        },
+                        {
+                            path: "subscription",
+                            name: "AppDemoGraphQLSubscription",
+                            component: AppDemoGraphQLSubscription,
+                        }
+                    ]
                 }
             ]
         },
