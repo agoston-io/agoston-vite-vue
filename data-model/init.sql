@@ -37,6 +37,11 @@ create policy all_insert on tweets
 -- GraphQL exposure for queries
 ---------------------------------------------------
 
+/**
+	GraphQL queries are best handled through Postgres view (rather than straight from the table).
+	That allows the addition of extra logic in the endpoint.
+*/
+
 -- Expose the tweets throught the v_tweets view.
 create view v_tweets
 with(security_invoker=true) as
@@ -46,15 +51,65 @@ select 	t.id,
 	   	t.tweet
 from	tweets t
 join	users u on u.id = t.user_id
-order by 1 asc;
+order by 1 asc
+limit 50;
+;
 grant select on v_tweets to anonymous, authenticated;
+
+
+/**
+The view above can then be used as a GraphQL query in the GraphQL endpoint:
+
+	query vTweets {
+		vTweets {
+			nodes {
+				id
+				createdTs
+				username
+				tweet
+			}
+		}
+	}
+
+The above GraphQL query will return the following JSON to the frontend:
+
+	{
+		"data": {
+			"vTweets": {
+				"nodes": [
+					{
+						"id": 1,
+						"createdTs": "Wednesday 01 November  - 14:00:44",
+						"username": "niolap",
+						"tweet": "Hi there, that's my first tweet!"
+					},
+					{
+						"id": 2,
+						"createdTs": "Wednesday 01 November  - 14:00:49",
+						"username": "niolap",
+						"tweet": "Hi there, that's my second tweet!"
+					},
+					{
+						"id": 3,
+						"createdTs": "Wednesday 01 November  - 14:00:49",
+						"username": "niolap",
+						"tweet": "Hi there, that's my third tweet!"
+					}
+				]
+			}
+		}
+	}
+
+*/
+
 
 ---------------------------------------------------
 -- GraphQL exposure for mutations
 ---------------------------------------------------
+
 /**
-	Mutations are best handled through functions.
-	That allows to addition easily extra logic in the endpoint.
+	Mutations are best handled through Postgres functions (rather than straight in the table).
+	That allows the addition of extra logic in the endpoint.
 */
 
 create function tweet_add (p_tweet varchar(250))
@@ -75,7 +130,7 @@ end;
 $$
 
 /**
-There function above can then be used as a mutation in the GraphQL endpoint:
+The function above can then be used as a mutation in the GraphQL endpoint:
 
 	mutation tweetAdd($pTweet: String = "Hi there, that's my first tweet!") {
 		tweetAdd(input: {pTweet: $pTweet}) {
@@ -88,7 +143,7 @@ There function above can then be used as a mutation in the GraphQL endpoint:
 		}
 	}
 
-Above GraphQL mutation will returns the following JSON:
+The above GraphQL mutation will return the following JSON to the frontend:
 
 	{
 	"data": {
