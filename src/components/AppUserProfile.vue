@@ -1,8 +1,8 @@
 <template>
     <div class="container mt-5 py-5">
         <div class="row justify-content-center mt-5">
-            <div class="col-8">
-                <h2 class="mt-5 mb-5">User profile</h2>
+            <div class="col-12">
+                <h2 class="mb-5">User profile</h2>
 
                 <div class="row">
                     <div class="col-4 fw-bold">
