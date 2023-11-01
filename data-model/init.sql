@@ -1,8 +1,13 @@
+---------------------------------------------------
+-- Data model to hold our data.
+---------------------------------------------------
+
+-- Cleanup to run this script idempotently (don't use in production environment).
 drop function tweet_add;
 drop view if exists v_tweets;
 drop table if exists tweets;
 
--- A simple tweet table
+-- A simple tweet table.
 create table tweets (
 	id serial primary key,
 	created_ts timestamp not null default CURRENT_TIMESTAMP,
