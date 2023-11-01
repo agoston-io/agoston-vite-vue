@@ -151,16 +151,16 @@ The function above can then be used as a mutation in the GraphQL endpoint:
 The above GraphQL mutation will return the following JSON to the frontend:
 
 	{
-	"data": {
-		"tweetAdd": {
-		"vTweet": {
-			"id": 1,
-			"createdTs": "Wednesday 01 November  - 13:58:54",
-			"username": "google-oauth2|110397203064878889081",
-			"tweet": "Hi there, that's my first tweet!"
+		"data": {
+			"tweetAdd": {
+				"vTweet": {
+					"id": 1,
+					"createdTs": "Wednesday 01 November  - 13:58:54",
+					"username": "google-oauth2|110397203064878889081",
+					"tweet": "Hi there, that's my first tweet!"
+				}
+			}
 		}
-		}
-	}
 	}
 
 */
