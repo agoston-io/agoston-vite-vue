@@ -12,16 +12,12 @@
     <div class="container" v-else>
         <div class="row">
             <div class="col-12">
-                <div class="row">
-                    <div class="col-12 mb-2" v-for="item in vTweets.nodes" :key="item.id">
-                        <div class="row">
-                            <div class="col text-muted">{{ item.createdTs }} | {{ item.username }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col fs-5">{{ item.tweet }}</div>
-                        </div>
-                    </div>
-                </div>
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="item in vTweets.nodes" :key="item.id">
+                        <p class="col my-0 text-muted">{{ item.createdTs }} | {{ item.username }}</p>
+                        <p class="col my-0 fs-5">{{ item.tweet }}</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
