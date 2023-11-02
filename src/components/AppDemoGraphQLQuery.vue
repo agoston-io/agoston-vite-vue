@@ -26,7 +26,6 @@
 
 <script>
 
-import { getOperationName } from "@apollo/client/utilities";
 import gql from 'graphql-tag';
 
 // GraphQL Fragment to avoid repeating the query attributes
