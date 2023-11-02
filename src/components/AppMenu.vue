@@ -16,11 +16,6 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <router-link class="nav-link" :to="{ name: 'AppLandingPage' }">
-                                <span>Home</span>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
                             <router-link class="nav-link" :to="{ name: 'AppUserProfile' }">
                                 <span>Profile (Session Data)</span>
                             </router-link>

@@ -1,19 +1,23 @@
 <template>
-    <div class="container mt-5 py-5">
-        <div class="row justify-content-center mt-5">
-            <div class="col-12">
-                <h2>Add tweets</h2>
+    <div class="row" v-if="graphQLError">
+        <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+                {{ graphQLError }}
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 input-group">
-                <input class="form-control form-control-lg" type="text" placeholder="Express yourself..." v-model="tweet"
-                    aria-label=".form-control-lg example">
-                <button class="btn btn-primary fs-5 px-5" type="button" @click="save()">Send <i
-                        class="bi bi-send ms-2"></i></button>
-            </div>
+    <div class="row">
+        <div class="col-12 input-group">
+            <input class="form-control form-control-lg" type="text" placeholder="Express yourself..." v-model="tweet"
+                aria-label=".form-control-lg example">
+            <button class="btn btn-primary fs-5 px-5" type="button" @click="save()">Send <i
+                    class="bi bi-send ms-2"></i></button>
+        </div>
+    </div>
+    <div class="row mt-5" v-if="tweetCreated">
+        <div class="col-12">
+            <h4>Tweet created and returned from Postgres:</h4>
+            <code><pre>{{ tweetCreated }}</pre></code>
         </div>
     </div>
 </template>
@@ -44,6 +48,8 @@ export default {
     data() {
         return {
             tweet: null,
+            tweetCreated: null,
+            graphQLError: null,
         };
     },
     methods: {
@@ -53,8 +59,11 @@ export default {
                 variables: {
                     pTweet: String(this.tweet),
                 },
-            }).then(() => {
+            }).then((data) => {
+                this.tweetCreated = data;
                 this.tweet = null;
+            }).catch((error) => {
+                this.graphQLError = error;
             });
         },
     }

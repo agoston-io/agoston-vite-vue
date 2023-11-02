@@ -1,9 +1,23 @@
 <template>
-    <div class="container mt-5 py-5">
-        <div class="row justify-content-center mt-5">
-            <div class="col-12">
-                <h2>Live tweets</h2>
-            </div>
+    <div class="row">
+        <div class="col-6">
+            <AppDemoGraphQLMutation />
+        </div>
+        <div class="col-6">
+            <AppDemoGraphQLQuery />
         </div>
     </div>
 </template>
+
+<script>
+import AppDemoGraphQLQuery from './AppDemoGraphQLQuery.vue';
+import AppDemoGraphQLMutation from './AppDemoGraphQLMutation.vue';
+
+export default {
+    name: "App",
+    components: {
+        AppDemoGraphQLQuery: AppDemoGraphQLQuery,
+        AppDemoGraphQLMutation: AppDemoGraphQLMutation
+    },
+};
+</script>

@@ -25,7 +25,7 @@ export default function router(session) {
             path: "/profile",
             name: "AppUserProfile",
             component: AppUserProfile,
-            meta: { requiresAuth: true },
+            meta: { requiresAuth: true, pageTitle: "User profile (Session Data)" },
         },
         {
             path: "/graphql-demo",
@@ -34,16 +34,19 @@ export default function router(session) {
                     path: "query",
                     name: "AppDemoGraphQLQuery",
                     component: AppDemoGraphQLQuery,
+                    meta: { pageTitle: "List tweets (GraphQL Query)" },
                 },
                 {
                     path: "mutation",
                     name: "AppDemoGraphQLMutation",
                     component: AppDemoGraphQLMutation,
+                    meta: { pageTitle: "Add tweets (GraphQL Mutation)" },
                 },
                 {
                     path: "subscription",
                     name: "AppDemoGraphQLSubscription",
                     component: AppDemoGraphQLSubscription,
+                    meta: { pageTitle: "Real-Time (GraphQL Subscription)" },
                 }
             ]
         },

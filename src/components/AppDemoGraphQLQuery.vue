@@ -1,24 +1,17 @@
 <template>
-    <div class="container mt-5 py-5">
-        <div class="row justify-content-center mt-5">
-            <div class="col-12">
-                <h2>List tweets</h2>
-            </div>
+    <div class="row" v-if="$apollo.queries.vTweets.loading">
+        <div class="col-12">
+            Loading tweets...
         </div>
     </div>
-    <div class="container" v-if="$apollo.queries.vTweets.loading">
-        Loading tweets...
-    </div>
-    <div class="container" v-else>
-        <div class="row">
-            <div class="col-12">
-                <ul class="list-group">
-                    <li class="list-group-item" v-for="item in vTweets.nodes" :key="item.id">
-                        <p class="col my-0 text-muted">{{ item.createdTs }} | {{ item.username }}</p>
-                        <p class="col my-0 fs-5">{{ item.tweet }}</p>
-                    </li>
-                </ul>
-            </div>
+    <div class="row" v-else>
+        <div class="col-12">
+            <ul class="list-group">
+                <li class="list-group-item" v-for="item in vTweets.nodes" :key="item.id">
+                    <p class="col my-0 text-muted">{{ item.createdTs }} | {{ item.username }}</p>
+                    <p class="col my-0 fs-5">{{ item.tweet }}</p>
+                </li>
+            </ul>
         </div>
     </div>
 </template>

@@ -56,7 +56,7 @@ select 	t.id,
 	   	t.tweet
 from	tweets t
 join	users u on u.id = t.user_id
-order by 1 asc
+order by 1 desc
 limit 50;
 ;
 grant select on v_tweets to anonymous, authenticated;
@@ -126,6 +126,10 @@ declare
 	d_id int;
 	d_v_tweets v_tweets;
 begin
+	if not (session()->>'is_authenticated')::boolean then
+		raise exception 'Please login to tweet :)';
+	end if;
+
 	insert into tweets (tweet) values (p_tweet) returning id into d_id;
 
 	select * into d_v_tweets from v_tweets where id = d_id;
